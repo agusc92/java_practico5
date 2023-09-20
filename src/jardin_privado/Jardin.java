@@ -2,6 +2,8 @@ package jardin_privado;
 
 import java.util.ArrayList;
 
+import conversorUnidades.Convertir;
+
 public class Jardin {
 	private String nombre;
 	private ArrayList<Planta> plantas;
@@ -51,5 +53,7 @@ public class Jardin {
 		jardin.agregarPlanta( new Planta("Violeta","Cordera verdoisica","Argentina"));
 		
 		jardin.obtenerPlantas();
+		System.out.println(Convertir.centimetrosAPulgada(7));
+		
 	}
 }
