@@ -7,6 +7,7 @@ public class Casa {
 	private String nombre;
 	private ArrayList <Alumno> alumnos;
 	private ArrayList <String> cualidades;
+	private ArrayList <Casa> casasEnemigas;
 	private int cantMaxima;
 	
 	public Casa(String nombre , int cantMaxima ) {
@@ -14,31 +15,47 @@ public class Casa {
 		this.nombre = nombre;
 		this.cantMaxima = cantMaxima;
 		this.cualidades = new ArrayList<String>() ;
+		this.casasEnemigas = new ArrayList<Casa>();
 	}
 	public boolean compruevaVacante () {
 			return alumnos.size()<this.cantMaxima; 
 				
 	}
 	
-	public void agragarCualidad(String ...  cualidad) {
+	public void agregarCualidad(String ...  cualidad) {
 		for(int i = 0 ; i<cualidad.length;i++) {
 			this.cualidades.add(cualidad[i]);
 		}
 	}
-	public boolean calificar(ArrayList<String> cualidadesAlumno) {
-		boolean aceptado = true;
-		int i = 0;
-		while(i<cualidades.size()&&aceptado) {
-			aceptado = cualidadesAlumno.contains(cualidades.get(i));
-			if(aceptado)
-				i++;
+	public boolean calificar(Alumno alumno) {
+		boolean aceptado = true ;
+		int i =0;
+		while(i<casasEnemigas.size()&&aceptado) {
+			aceptado = !this.concuerda(casasEnemigas.get(i).getCualidades(), alumno);
+			i++;
+		}
+		if(aceptado) {
+			aceptado =  this.concuerda(cualidades, alumno);
 		}
 		return aceptado;
+		
 	}
+	
 	public void agregarAlumno(Alumno alumno) {
 		this.alumnos.add(alumno);
 	}
-
+	
+	protected boolean concuerda(ArrayList<String> cualidades , Alumno alumno) {
+		for(int i =0;i<cualidades.size();i++) {
+			if(!alumno.getCualidades().contains(cualidades.get(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	public void agregarCasaEnemiga(Casa casaEnemiga) {
+		this.casasEnemigas.add(casaEnemiga);
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -67,6 +84,12 @@ public class Casa {
 	}
 	public void setCualidades(ArrayList<String> cualidades) {
 		this.cualidades = cualidades;
+	}
+	public ArrayList<Casa> getCasasEnemigas() {
+		return casasEnemigas;
+	}
+	public void setCasasEnemigas(ArrayList<Casa> casasEnemigas) {
+		this.casasEnemigas = casasEnemigas;
 	}
 	
 	

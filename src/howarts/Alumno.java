@@ -7,6 +7,7 @@ public class Alumno {
 	private String apellido;
 	private ArrayList<Alumno> familiares;
 	private ArrayList<String> cualidades;
+	private Casa casa;
 
 	public Alumno(String nombre , String apellido) {
 		this.nombre = nombre;
@@ -55,6 +56,14 @@ public class Alumno {
 
 	public void setCualidades(ArrayList<String> cualidades) {
 		this.cualidades = cualidades;
+	}
+
+	public Casa getCasa() {
+		return casa;
+	}
+
+	public void setCasa(Casa casa) {
+		this.casa = casa;
 	}
 
 
