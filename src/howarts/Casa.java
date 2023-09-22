@@ -13,10 +13,10 @@ public class Casa {
 		this.alumnos = new ArrayList<Alumno>();
 		this.nombre = nombre;
 		this.cantMaxima = cantMaxima;
-		this.cualidades = new ArrayList<String>(Arrays.asList("leal","bondadoso")) ;
+		this.cualidades = new ArrayList<String>() ;
 	}
 	public boolean compruevaVacante () {
-			return alumnos.size()<cantMaxima; 
+			return alumnos.size()<this.cantMaxima; 
 				
 	}
 	

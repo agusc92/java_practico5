@@ -9,22 +9,26 @@ public class Sombrero {
 		this.casas = new ArrayList<Casa>();
 	}
 
-	public void seleccionar(Alumno alumno) {
+	public String seleccionar(Alumno alumno) {
 		int i = 0;
 		boolean selecto = false;
-		if(casas.get(i).compruevaVacante()) {
+		
 			while(i<casas.size()&&!selecto) {
-
+				if(casas.get(i).compruevaVacante()) {
 				selecto = casas.get(i).calificar(alumno.getCualidades());
 				if (!selecto)
 					i++;
+				else {
+					casas.get(i).agregarAlumno(alumno);
+					return alumno.getNombre() + " "+ alumno.getApellido() + " ahora pertenece a: " + casas.get(i).getNombre()+"!!!!";
+				}
+			}else {
+				i++;
 			}
-		}
-		if(selecto) {
-			System.out.println(casas.get(i).getNombre()+"!!!!");
-		}else {
-			System.out.println("a casa por muggle");
-		}
+				
+			}
+		
+		return "fuera de aqui muggle";
 	}
 	public void agregarCasa(Casa casa) {
 		this.casas.add(casa);
